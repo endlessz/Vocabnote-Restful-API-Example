@@ -17,7 +17,7 @@ class CreateVocabsTable extends Migration
             $table->increments('id');
             $table->string('word');
             $table->string('meaning');
-            $table->text('example');
+            $table->text('example')->nullable();
             $table->timestamps();
         });
     }
