@@ -17,9 +17,9 @@ class VocabController extends Controller
         $this->vocab = $vocab;
     }
 
-    public function getVocabs()
+    public function getVocabs(Request $request)
     {
-        $vocabs = $this->vocab->getVocabs();
+        $vocabs = $this->vocab->getVocabs($request->input('size'));
 
         if(!$vocabs){
             return Responses::notFound('This vocab is not found.');

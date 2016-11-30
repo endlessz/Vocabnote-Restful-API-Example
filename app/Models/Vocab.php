@@ -15,9 +15,9 @@ class Vocab extends Model
         'updated_at', 
     ];
 
-    public function getVocabs()
+    public function getVocabs($size)
     {
-    	return $this->paginate(10);
+    	return $this->paginate(is_numeric($size) ? intval($size) : 10);
     }
 
     public function getVocab($id)
