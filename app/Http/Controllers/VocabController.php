@@ -76,4 +76,16 @@ class VocabController extends Controller
 
         return Responses::json($vocab);
     }
+
+    public function deleteVocab($id)
+    {
+        $vocab = $this->vocab->getVocab($id); 
+        if(!$vocab){
+            return Responses::notFound('This vocab is not found.');
+        }
+
+        $vocab->delete();
+
+        return Responses::noContent();
+    }
 }
