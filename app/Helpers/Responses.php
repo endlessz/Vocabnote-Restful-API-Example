@@ -12,7 +12,7 @@ class Responses
 		return static::respondState('Bad Request', $message, 400);
 	}
 
-	public static function deleted() {
+	public static function noContent() {
 		return static::json(null, 204);
 	}
 
