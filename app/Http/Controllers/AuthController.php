@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\Models\User;
-
 use App\Helpers\Responses;
+use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller {
 
     protected $user;
+    protected $jwt;
 
-    public function __construct(User $user)
+
+    public function __construct(User $user, JWTAuth $jwt)
     {
         $this->user = $user;
+        $this->jwt = $jwt;
     }
 
     public function createUser(Request $request)
@@ -32,5 +35,35 @@ class AuthController extends Controller {
         $user = $this->user->createUser($request);
 
         return Responses::json($user);
+    }
+
+    public function postLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'    => 'required|email|max:255',
+            'password' => 'required',
+        ]);
+
+        try {
+
+            if (! $token = $this->jwt->attempt($request->only('email', 'password'))) {
+                return Responses::notFound(['user_not_found']);
+            }
+
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return Responses::internalError(['token_expired']);
+
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+            return Responses::internalError(['token_invalid']);
+
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return Responses::internalError(['token_absent' => $e->getMessage()]);
+
+        }
+
+        return Responses::json(compact('token'));
     }
 }
