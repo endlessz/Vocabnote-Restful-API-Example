@@ -25,7 +25,7 @@ class VocabController extends Controller
             return Responses::notFound('This vocab is not found.');
         }
 
-        return response()->json($vocabs, 200);
+        return Responses::json($vocabs);
     }
 
     public function getVocab($id)
@@ -36,7 +36,7 @@ class VocabController extends Controller
             return Responses::notFound('This vocab is not found.');
         }
 
-        return response()->json($vocab, 200);
+        return Responses::json($vocab);
     }
 
     public function createVocab(Request $request)
