@@ -13,7 +13,6 @@ class AuthController extends Controller {
     protected $user;
     protected $jwt;
 
-
     public function __construct(User $user, JWTAuth $jwt)
     {
         $this->user = $user;
