@@ -7,6 +7,8 @@ $app->get('/', function () use ($app) {
 
 $app->group(['prefix' => 'api/v1'], function($app)
 {  
+	$app->post('register','AuthController@createUser');
+
 	$app->get('vocabs','VocabController@getVocabs');
 
     $app->get('vocabs/{id}','VocabController@getVocab');
