@@ -15,20 +15,10 @@ class Vocab extends Model
         'updated_at', 
     ];
 
-    public function getVocabs($size)
+    public function user()
     {
-    	return $this->paginate(is_numeric($size) ? intval($size) : 10);
-    }
-
-    public function getVocab($id)
-    {
-        return $this->find($id);
-    }
-
-    public function createVocab($input)
-    {
-        return $this->create($input->all());
-    }
+        return $this->belongsTo('App\Models\User', 'user_id');
+    } 
 
     public function updateVocab($request)
     {
