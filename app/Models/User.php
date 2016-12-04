@@ -24,11 +24,6 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
         'password',
     ];
 
-    public function getUserId()
-    {
-        return $this->id;
-    }
-
     public function vocabs()
     {
         return $this->hasMany('App\Models\Vocab', 'user_id');
