@@ -12,6 +12,10 @@ class Responses
 		return static::respondState('Bad Request', $message, 400);
 	}
 
+	public static function unauthorized($message) {
+		return static::respondState('Unauthorized', $message, 401);
+	}
+
 	public static function internalError($message) {
 		return static::respondState('Internal Error', $message, 500);
 	}
