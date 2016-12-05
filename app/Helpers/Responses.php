@@ -16,6 +16,10 @@ class Responses
 		return static::respondState('Unauthorized', $message, 401);
 	}
 
+	public static function tooManyAttempts($message){
+		return static::respondState('Too many attempt.', $message, 429);
+	}
+
 	public static function internalError($message) {
 		return static::respondState('Internal Error', $message, 500);
 	}
