@@ -10,7 +10,7 @@ $app->group(['prefix' => 'api/v1'], function($app)
 
 	$app->post('login', 'AuthController@postLogin');
 
-	$app->group(['middleware' => 'auth:api'], function($app)
+	$app->group(['middleware' => ['auth:api', 'throttle:50,1']], function($app)
 	{
 		$app->get('user', 'AuthController@getAuthenticatedUser');
 
