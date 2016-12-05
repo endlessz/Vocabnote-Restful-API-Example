@@ -6,6 +6,7 @@ This is an example Restful API using Lumen 5.3.2
 + JWT Authentication using [Tymondesigns/ jwt-auth] (https://github.com/tymondesigns/jwt-auth)
 + RESTful routing and errors
 + Models with proper relationships
++ Rate Limit
 
 ## Quick Start
 
