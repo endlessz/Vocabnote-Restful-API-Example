@@ -38,6 +38,11 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
                ]);
     }
 
+    public function isUsernameAvailable($username)
+    {
+        return User::where('username', $username)->count() === 0;
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
