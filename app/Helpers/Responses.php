@@ -37,11 +37,20 @@ class Responses
 		return response()->json($data, $status);
 	}
 
-	public static function respondState($title, $message, $code) {
+	public static function respondState($title, $message, $code)
+	{
 		return response()->json([
 			'code' => $code,
 			'message' => $title, 
 			'description' => $message,
+		], $code);
+	}
+
+	public static function availableState($available, $code)
+	{
+		return response()->json([
+			'code' => $code,
+			'available' => $available, 
 		], $code);
 	}
 }
