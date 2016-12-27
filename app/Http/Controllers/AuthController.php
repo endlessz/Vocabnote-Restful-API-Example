@@ -90,4 +90,9 @@ class AuthController extends Controller {
 
         return Responses::json(compact('user'));
     }
+
+    public function getUsernameAvailable($username)
+    {
+        return Responses::availableState($this->user->isUsernameAvailable($username), 200);
+    }
 }

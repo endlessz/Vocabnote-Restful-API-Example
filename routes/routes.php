@@ -10,6 +10,8 @@ $app->group(['prefix' => 'api/v1'], function($app)
 
 	$app->post('login', 'AuthController@postLogin');
 
+	$app->get('usernameAvailable/{username}', 'AuthController@getUsernameAvailable');
+
 	$app->group(['middleware' => ['auth:api', 'throttle:50,1']], function($app)
 	{
 		$app->get('user', 'AuthController@getAuthenticatedUser');
